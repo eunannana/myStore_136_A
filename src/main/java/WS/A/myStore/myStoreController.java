@@ -21,8 +21,8 @@ public class myStoreController {
     Myproduct data = new Myproduct();
     MyproductJpaController dataCtrl = new MyproductJpaController();
 
-     @RequestMapping("/getProductName/{id}")
-    public String getProductName(@PathVariable("id") int id){
+     @RequestMapping("/getProduct/{id}")
+    public String getData(@PathVariable("id") int id){
 
         try{
             data = dataCtrl.findMyproduct(id);
@@ -34,12 +34,12 @@ public class myStoreController {
     }
 
     @RequestMapping("/getProductAll")
-    public List<Myproduct> getAll()
+    public List<Myproduct> getDataAll()
     {
         return dataCtrl.findMyproductEntities();
     }
 
-    @RequestMapping("/AddProduct")
+    @RequestMapping("/addProduct")
     public String addData(@RequestBody Myproduct productID) {
         try{
             dataCtrl.create(productID);
@@ -49,15 +49,15 @@ public class myStoreController {
             return "Product is already exist";
         }
     }
-
-    @RequestMapping("/delete/{id}")
+            
+    @RequestMapping("/deleteData/{id}")
     public String deleteData(@PathVariable("id") int id){
         try{
             dataCtrl.destroy(id);
-            return id + " successfully deleted";
+            return "Successfully deleted data";
         }
         catch(NonexistentEntityException error){
-            return id + " Data is not found!!!";
+            return "Data is not found!!!";
         }
     }
 
