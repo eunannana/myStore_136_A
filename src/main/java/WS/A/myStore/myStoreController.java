@@ -40,15 +40,18 @@ public class myStoreController {
     }
 
     @RequestMapping("/addProduct")
-    public String addData(@RequestBody Myproduct productID) {
+    public String addData(@RequestBody Myproduct theproduct) {
         try{
-            dataCtrl.create(productID);
+            dataCtrl.create(theproduct);
             return "Successfully added data";
         }
         catch(Exception message){
             return "Product is already exist";
         }
     }
+
+    
+
             
     @RequestMapping("/deleteData/{id}")
     public String deleteData(@PathVariable("id") int id){
